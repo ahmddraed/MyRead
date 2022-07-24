@@ -11,7 +11,14 @@ function App() {
 
 
   const handleSelect = async (book, bookShelf) => {
+    if (Books.includes(book)) {
+      book.shelf = bookShelf
+    } else {
+      Books.concat(book)
+      book.shelf = bookShelf
+    }
     await BooksApi.update(book, bookShelf)
+    setBook(Books)
     getBooks();
   }
   const getBooks = async () => {

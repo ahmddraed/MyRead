@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 
 
-const SearchComponent = ({ handleSelect }) => {
+const SearchComponent = ({ books, handleSelect }) => {
   const [query, SetQuery] = useState('')
   const [results, SetResults] = useState([])
 
@@ -16,7 +16,15 @@ const SearchComponent = ({ handleSelect }) => {
     })
   }
 
-
+  const ShowResults = results && results.length > 0 && results.map((result) => {
+    books.map((book) => {
+      if (book.id === result.id) {
+        result.shelf = book.shelf
+      }
+      return book
+    })
+    return result
+  })
 
   return (
     <div className="search-books">
@@ -38,8 +46,8 @@ const SearchComponent = ({ handleSelect }) => {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {results && results.length > 0 &&
-            results.map((book) =>
+          {ShowResults && ShowResults.length > 0 &&
+            ShowResults.map((book) =>
               <li>
                 <Book books={book} handleSelect={handleSelect} />
               </li>
@@ -51,6 +59,7 @@ const SearchComponent = ({ handleSelect }) => {
   )
 }
 SearchComponent.propTypes = {
+  books: propTypes.array.isRequired,
   handleSelect: propTypes.func.isRequired
 }
 export default SearchComponent
