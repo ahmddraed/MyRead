@@ -13,7 +13,7 @@ const ShelfComponent = ({ books, title, shelfType, handleSelect }) => {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {show.map((books) =>
-                            <li>
+                            <li key={books.id}>
                                 <Book books={books} handleSelect={handleSelect} />
                             </li>
                         )}

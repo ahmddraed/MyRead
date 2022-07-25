@@ -8,7 +8,7 @@ const ShelfSelector = ({ books, handleSelect }) => {
     }
     return (
         <div className="book-shelf-changer">
-            <select value={books.shelf ? books.shelf : 'none'} onChange={handleOnSelect}>
+            <select value={books.shelf ? books.shelf : books.shelf ="N/A"} onChange={handleOnSelect}>
                 <option value="none" disabled>
                     Move to...
                 </option>
@@ -17,7 +17,7 @@ const ShelfSelector = ({ books, handleSelect }) => {
                 </option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
-                <option value="none">None</option>
+                <option value="N/A">None</option>
             </select>
         </div>
     )

@@ -48,7 +48,7 @@ const SearchComponent = ({ books, handleSelect }) => {
         <ol className="books-grid">
           {ShowResults && ShowResults.length > 0 &&
             ShowResults.map((book) =>
-              <li>
+              <li key={book.id}>
                 <Book books={book} handleSelect={handleSelect} />
               </li>
             )
