@@ -9,6 +9,13 @@ To get started developing right away:
 - install all project dependencies with `npm install`
 - start the development server with `npm start`
 
+## Project ScreenShots
+![HomeScreen](public/Screens/Home.png)
+![EmptySearch](public/Screens/emptySearch.png)
+![SearchScreen1](public/Screens/Search1.png)
+![SearchScreen2](public/Screens/Search2.png)
+![HomeScreen2](public/Screens/Home2.png)
+
 ## What You're Getting
 
 ```bash

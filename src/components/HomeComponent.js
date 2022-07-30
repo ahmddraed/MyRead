@@ -5,7 +5,11 @@ import propTypes from 'prop-types'
 
 
 const HomeComponent = ({ books, handleSelect }) => {
-
+    const ShelfType = [
+        { title: 'Currently Reading', type: 'currentlyReading' },
+        { title: 'Want to Read', type: 'wantToRead' },
+        { title: 'Read', type: 'read' }
+      ]
 
 
     return (
@@ -13,11 +17,11 @@ const HomeComponent = ({ books, handleSelect }) => {
             <div className="list-books-title">
                 <h1>MyReads</h1>
             </div>
-            <div className="list-books-content">
-                <ShelfComponent books={books} title='Currently Reading' shelfType='currentlyReading' handleSelect={handleSelect} />
-                <ShelfComponent books={books} title='Want to Read' shelfType='wantToRead' handleSelect={handleSelect} />
-                <ShelfComponent books={books} title='Read' shelfType='read' handleSelect={handleSelect} />
+            {ShelfType.map((shelf) =>
+            <div className="list-books-content" key={shelf.type}>
+                <ShelfComponent books={books} title={shelf.title} shelfType={shelf.type} handleSelect={handleSelect} />
             </div>
+            )}
             <div className="open-search">
                 <Link to='/search'>Add a book</Link>
             </div>
