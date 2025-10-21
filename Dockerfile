@@ -5,7 +5,7 @@ FROM node:16-alpine AS build
 
 WORKDIR /MyRead
     
-COPY package.json* ./
+COPY package*.json ./
 
 RUN npm install
 
