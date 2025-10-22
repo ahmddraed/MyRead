@@ -3,6 +3,8 @@
   on:
     push:
       branches: [ "main" ]
+    pull_request:
+      branches: [ "main"]
 
   jobs:
     build:
@@ -29,7 +31,6 @@
           uses: docker/build-push-action@v6
           with:
             context: .
-            file: ./Dockerfile
             push: true
             tags: |
               ghcr.io/${{ github.repository_owner }}/myread:latest
