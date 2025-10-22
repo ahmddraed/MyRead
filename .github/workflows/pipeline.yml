@@ -36,30 +36,30 @@
               ghcr.io/${{ github.repository_owner }}/myread:latest
               ghcr.io/${{ github.repository_owner }}/myread:${{github.sha}}
 
-    deploy:
-      name: Deploy to RHEL VM
-      needs: build
-      runs-on: ubuntu-latest
+    # deploy:
+    #   name: Deploy to RHEL VM
+    #   needs: build
+    #   runs-on: ubuntu-latest
 
-      steps:
-        - name: Deploy via SSH to RHEL
-          uses: appleboy/ssh-action@v1.0.3
-          with:
-            host: ${{ secrets.RHEL_HOST }}
-            username: ${{ secrets.RHEL_USER }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            script: |
-              echo "logging to github container registry..."
-              echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+    #   steps:
+    #     - name: Deploy via SSH to RHEL
+    #       uses: appleboy/ssh-action@v1.0.3
+    #       with:
+    #         host: ${{ secrets.RHEL_HOST }}
+    #         username: ${{ secrets.RHEL_USER }}
+    #         key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #         script: |
+    #           echo "logging to github container registry..."
+    #           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
-              echo "Pulling latest image from github..."
-              docker pull ghcr.io/${{ github.repository_owner}}/myread:latest
+    #           echo "Pulling latest image from github..."
+    #           docker pull ghcr.io/${{ github.repository_owner}}/myread:latest
 
-              echo "Stopping old container..."
-              docker stop myread || true
-              docker rm myread || true
+    #           echo "Stopping old container..."
+    #           docker stop myread || true
+    #           docker rm myread || true
 
-              echo "Starting new container.."
-              docker run -d --name myread -p 3000:80 ghcr.io/${{ github.repository_owner }}/myread:latest
+    #           echo "Starting new container.."
+    #           docker run -d --name myread -p 3000:80 ghcr.io/${{ github.repository_owner }}/myread:latest
 
-              echo "Deployment complete!"
+    #           echo "Deployment complete!"
