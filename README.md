@@ -67,7 +67,7 @@ This allows Jenkins pipelines to:
 - Run containers
 - Manage deployments directly from inside the Jenkins 
 
-![Jenkins](./public/Screen/DinD.png)
+![Jenkins](./public/Screens/DinD.png)
 
 run the image by : 
 ``` bash 
@@ -114,15 +114,15 @@ docker run -d \
 
 ## Application Screenshot
 
-![Application](./public/Screen/live.png)
+![Application](./public/Screens/live.png)
 
 # CI Pipeline
 
-![GitHub Actions](./public/Screen/CI-pipeline.png)
+![GitHub Actions](./public/Screens/CI-pipeline.png)
 
 # CD Pipeline
 
-![Jenkins](./public/Screen/CD-pipeline.png)
+![Jenkins](./public/Screens/CD-pipeline.png)
 
 
 
