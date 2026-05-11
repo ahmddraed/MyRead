@@ -122,7 +122,7 @@ docker run -d \
 
 # CD Pipeline
 
-![Jenkins](./public/Screens/CD-pipeline.png)
+![Jenkins](./public/Screens/CD-Pipeline.png)
 
 
 
