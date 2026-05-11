@@ -1,20 +1,47 @@
 pipeline {
-    agent any 
+    agent any
+
+    environment {
+        IMAGE = "ghcr.io/ahmddraed/myread:latest"
+    }
 
     stages {
-        stage("Build") {
+
+        stage('Login to GHCR') {
             steps {
-                echo "Building Docker image..."
-                sh 'docker build -t myread:1.0 .'
+
+                withCredentials([usernamePassword(
+                    credentialsId: 'GitHub-Credentials',
+                    usernameVariable: 'GITHUB_USER',
+                    passwordVariable: 'GITHUB_TOKEN'
+                )]) {
+
+                    sh '''
+                    echo $GITHUB_TOKEN | docker login ghcr.io \
+                      -u $GITHUB_USER --password-stdin
+                    '''
+                }
             }
         }
 
-        stage("Deploy") {
+        stage('Pull Image') {
             steps {
-                echo "Running Docker container..."
+                sh 'docker pull $IMAGE'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+
                 sh 'docker stop myread-container || true'
                 sh 'docker rm -f myread-container || true'
-                sh 'docker run -d --name myread-container -p 3001:80 myread:1.0'
+
+                sh '''
+                docker run -d \
+                  --name myread-container \
+                  -p 3001:80 \
+                  $IMAGE
+                '''
             }
         }
     }
