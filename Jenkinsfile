@@ -39,7 +39,7 @@ pipeline {
                 sh '''
                 docker run -d \
                   --name myread-container \
-                  -p 3001:80 \
+                  -p 80::80 \
                   $IMAGE
                 '''
             }
