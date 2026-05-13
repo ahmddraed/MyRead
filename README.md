@@ -110,7 +110,7 @@ docker run -d \
   ahmddraed/jenkins-docker
   ```
   - configure your jenkins pipeline to get from scm and run the Jenkinsfile via github
-  - go to your browser and hit http://<UR_MACHINE_IP:3001>
+  - go to your browser and hit http://<UR_MACHINE_IP>
 
 ## Application Screenshot
 
@@ -122,7 +122,7 @@ docker run -d \
 
 # CD Pipeline
 
-![Jenkins](./public/Screens/CD-Pipeline.png)
+![Jenkins](./public/Screens/CD_pipeline.png)
 
 
 
